@@ -1,0 +1,16 @@
+Quando generi componenti frontend (React, Vue, HTML/Tailwind) per l'app di fitness, segui queste regole tassative:
+Layout e Card (Bento Grid):
+    Ogni blocco di informazione dev'essere una "card" separata con sfondo bianco pulito (#FFFFFF), angoli estremamente arrotondati (border-radius: 24px) e nessun bordo visibile (oppure un bordo quasi invisibile a basso contrasto).
+    Lo sfondo dell'applicazione deve essere di un grigio-azzurro chiaro opaco (#DCE1E7).
+
+Tipografia e Metriche:
+    I titoli delle metriche (es. Calories Burnt, Total Hours) devono essere in alto a sinistra, in un font sans-serif pulito, con colore grigio medio e dimensione contenuta.
+    Il valore numerico deve essere grande, in grassetto e scuro (#1A1A1A), affiancato o seguito dalla rispettiva unità di misura (es. kCal, km, hours) in tono più chiaro/grigio.
+
+Elementi Visivi e Icone:
+    Utilizza 3D Emojis (stile iOS/Apple) in alto a destra nella card per identificare al volo la categoria (es. 🔥 per calorie, 🏃 per corsa, 🛏️ per il sonno, 🫀 per il battito).
+    Per le griglie di icone/attività, racchiudi ogni icona all'interno di un cerchio bianco/grigio chiarissimo con un leggero effetto rilievo.
+
+Visualizzazione Dati e Badge:
+    Utilizza grafici ad anello (Donut charts) sottili con colori pastello saturi (es. Verde lime #9FE832, Rosa #FFAAA6, Viola #8C92FF).
+    Per i tag/badge informativi in basso, usa pillole a fondo chiaro (#F6F7F9 o tonalità pastello molto tenue) con angoli totalmente arrotondati.

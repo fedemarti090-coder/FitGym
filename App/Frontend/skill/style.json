@@ -1,0 +1,77 @@
+{
+    "skill_name": "ui_design_fitness_bento_style",
+    "version": "1.0.0",
+    "description": "Design system e linee guida UI/UX basati sullo stile Bento Grid soffice, minimale e moderno per app di fitness e benessere.",
+    "design_system": {
+        "theme": "Soft Neumorphic Light / Modern Bento UI",
+        "background": {
+            "main_canvas": "#DCE1E7",
+            "card_surface": "#FFFFFF",
+            "inner_circle_surface": "#F6F7F9"
+        },
+        "colors": {
+            "text": {
+                "primary": "#1A1A1A",
+                "secondary": "#7A7E85",
+                "muted": "#A0A5AD"
+            },
+            "accents": {
+                "purple_primary": "#CBD0FF",
+                "purple_dark": "#8C92FF",
+                "green_soft": "#E2F6C7",
+                "green_vibrant": "#9FE832",
+                "coral_pink": "#FFAAA6",
+                "blue_soft": "#E3F2FD"
+            }
+        },
+        "typography": {
+            "font_family": "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif",
+            "weights": {
+                "regular": 400,
+                "medium": 500,
+                "semibold": 600,
+                "bold": 700
+            },
+            "hierarchy": {
+                "card_title": {
+                    "size": "14px",
+                    "weight": "500",
+                    "color": "text.secondary"
+                },
+                "metric_value": {
+                    "size": "28px",
+                    "weight": "700",
+                    "color": "text.primary"
+                },
+                "metric_unit": {
+                    "size": "16px",
+                    "weight": "400",
+                    "color": "text.muted"
+                }
+            }
+        },
+        "borders_and_shadows": {
+            "card_border_radius": "24px",
+            "inner_element_radius": "50%",
+            "badge_border_radius": "20px",
+            "shadows": {
+                "soft_card_drop": "0px 8px 24px rgba(0, 0, 0, 0.03)",
+                "subtle_inset": "inset 0px 1px 2px rgba(255, 255, 255, 0.8)"
+            }
+        },
+        "layout_rules": {
+            "structure": "Bento Grid (CSS Grid / Flexbox)",
+            "gap": "16px",
+            "padding": "20px",
+            "card_aspect_ratios": "Mix di card quadrate (1x1), rettangolari orizzontali (2x1) e blocchi grandi (2x2)"
+        },
+        "iconography_and_assets": {
+            "type": "Apple 3D Emojis / Modern Fluent Emojis",
+            "usage": "Posizionate in alto a destra all'interno della card o al centro di cerchi di sfondo con tonalità chiare"
+        },
+        "data_visualization": {
+            "charts": "Ring / Donut Charts a corsa sottile, angoli arrotondati (stroke-linecap: round)",
+            "calendar": "Selezione giorno corrente tramite badge circolare colorato (viola pastel)"
+        }
+    }
+}

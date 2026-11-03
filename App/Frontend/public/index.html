@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitGym / Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- Header Intenso su un'unica riga -->
+    <header class="main-header">
+      <h1 class="header-title">
+        <span class="header-greeting">BENTORNATO</span>
+        <span class="header-name">FEDERICO</span>
+      </h1>
+    </header>
+
+    <!-- Bento Canvas Grid -->
+    <main class="bento-grid">
+
+      <!-- Top Row: Circle Widgets (Centrale più grande) -->
+      <div class="top-circles-row">
+        <!-- Cerchio Sinistra -->
+        <div class="circle-card circle-small">
+          <div class="icon-circle">🔥</div>
+          <span class="card-title">Kcal bruciate</span>
+          <div class="metric-value">
+            <span id="kcal-number">750</span> <span class="metric-unit">Kcal</span>
+          </div>
+        </div>
+
+        <!-- Cerchio Centrale (Più Grande) -->
+        <div class="circle-card circle-large">
+          <div class="icon-circle large-icon">🏃‍♂️</div>
+          <span class="card-title">Allenamento di oggi</span>
+          <div class="metric-value">
+            <span id="title-max">13 KM</span>
+            <span class="metric-unit" id="title-min">corsa</span>
+          </div>
+        </div>
+
+        <!-- Cerchio Destra -->
+        <div class="circle-card circle-small">
+          <div class="icon-circle">⚡</div>
+          <span class="card-title">Difficoltà</span>
+          <div class="metric-value" id="intensity">alta</div>
+        </div>
+      </div>
+
+      <!-- Main Bento Layout -->
+      <div class="grid-content">
+
+        <!-- Synchronized Server Card -->
+        <div class="card sync-card">
+          <button id="sync-btn" class="sync-button" aria-label="Sincronizza con il server">
+            <span class="status-pulse" id="status-pulse"></span>
+            <span class="sync-btn-text">Sincronizza con il server</span>
+            <svg class="sync-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.5 2v6h-6"></path>
+              <path d="M2.5 22v-6h6"></path>
+              <path d="M2 11.5a10 10 0 0 1 18.8-4.3L21.5 8"></path>
+              <path d="M22 12.5a10 10 0 0 1-18.8 4.2L2.5 16"></path>
+            </svg>
+          </button>
+
+          <ul class="step-list" id="step-list">
+            <li class="step-item" data-step="request">
+              <span class="check-icon">✓</span>
+              <span>invio richiesta</span>
+            </li>
+            <li class="step-item" data-step="database">
+              <span class="check-icon">✓</span>
+              <span>controllo il DB</span>
+            </li>
+            <li class="step-item" data-step="ai">
+              <span class="check-icon">✓</span>
+              <span>chiedo parere all AI</span>
+              <svg class="step-spinner" viewBox="0 0 24 24" role="status"
+                aria-label="Attendo la risposta dell'intelligenza artificiale">
+                <circle cx="12" cy="12" r="9"></circle>
+              </svg>
+            </li>
+            <li class="step-item" data-step="done">
+              <span class="check-icon">✓</span>
+              <span>dati scaricati</span>
+            </li>
+          </ul>
+          <p class="sync-error" id="sync-error" role="alert" hidden></p>
+        </div>
+
+        <!-- Nutrition Card (Spazio vuoto per grafico custom) -->
+        <div class="card nutrition-card">
+          <div class="card-header-with-icon">
+            <svg class="header-svg-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2v6a3 3 0 0 1-3 3 3 3 0 0 1-3-3V2"></path>
+              <path d="M15 2v16"></path>
+              <path d="M8 2v20"></path>
+              <path d="M5 2v6a3 3 0 0 0 6 0V2"></path>
+            </svg>
+            <h2>Alimentazione della settimana</h2>
+          </div>
+          <!-- Contenitore dinamico per grafico e legenda -->
+          <div class="nutrition-content" id="macro-chart-container"></div>
+        </div>
+
+
+
+        <!-- Weekly Tip Card -->
+        <div class="card tip-card">
+          <div class="tip-header">
+            <svg class="header-svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-lightbulb preview-icon">
+              <path
+                d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+              <path d="M9 18h6" />
+              <path d="M10 22h4" />
+            </svg>
+            <h2>Consiglio settimanale</h2>
+          </div>
+          <p class="tip-text" id="coach-parere">
+            Aumenta le dosi delle calorie per maggior energia nelle giornate e il numero di proteine...
+          </p>
+        </div>
+
+        <!-- Calendar Widget -->
+        <div class="card calendar-card">
+          <div class="calendar-header">
+            <button type="button" class="calendar-today-btn" id="calendar-today-btn"
+              aria-label="Torna alla settimana odierna" title="Torna alla settimana odierna">
+              <svg class="header-svg-icon lucide lucide-calendar-days preview-icon" xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 2v3" />
+                <path d="M16 2v3" />
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M3 9h18" />
+                <path d="M8 13h.01" />
+                <path d="M12 13h.01" />
+                <path d="M16 13h.01" />
+                <path d="M8 17h.01" />
+                <path d="M12 17h.01" />
+                <path d="M16 17h.01" />
+              </svg>
+            </button>
+
+            <span class="calendar-title" id="calendar-title"></span>
+            <div class="calendar-nav">
+              <button class="nav-btn" aria-label="Settimana precedente">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-move-left preview-icon">
+                  <path d="M6 8L2 12L6 16" />
+                  <path d="M2 12H22" />
+                </svg>
+
+              </button>
+              <button class="nav-btn" aria-label="Settimana successiva">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-move-right preview-icon">
+                  <path d="M18 8L22 12L18 16" />
+                  <path d="M2 12H22" />
+                </svg>
+
+              </button>
+            </div>
+          </div>
+          <div class="calendar-body">
+            <div class="calendar-grid">
+              <div class="calendar-day-col" id="L">
+                <span class="wk-label">L</span>
+                <span class="day-num" id="L-val"></span>
+              </div>
+              <div class="calendar-day-col" id="M">
+                <span class="wk-label">M</span>
+                <span class="day-num" id="M-val"></span>
+              </div>
+              <div class="calendar-day-col" id="Me">
+                <span class="wk-label">M</span>
+                <span class="day-num" id="Me-val"></span>
+              </div>
+              <div class="calendar-day-col " id="G">
+                <span class="wk-label">G</span>
+                <span class="day-num" id="G-val"></span>
+              </div>
+              <div class="calendar-day-col" id="V">
+                <span class="wk-label">V</span>
+                <span class="day-num" id="V-val"></span>
+              </div>
+              <div class="calendar-day-col" id="S">
+                <span class="wk-label">S</span>
+                <span class="day-num" id="S-val"></span>
+              </div>
+              <div class="calendar-day-col" id="D">
+                <span class="wk-label">D</span>
+                <span class="day-num" id="D-val"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card streak-card">
+          <div class="streak-icon-wrapper">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" class="svg-icon-fire-large">
+              <path
+                d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+            </svg>
+          </div>
+          <div class="streak-info">
+            <span class="card-title">Streak</span>
+            <div class="metric-value"><span id="days-number">0</span> <span class="metric-unit">g</span></div>
+          </div>
+        </div>
+
+
+        <!-- Weekly Meals Card -->
+        <div class="card meal-week-card">
+          <div class="card-header-with-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="header-svg-icon lucide lucide-calendar-clock preview-icon">
+              <path d="M16 14v2.2l1.6 1" />
+              <path d="M16 2v3" />
+              <path d="M21 7.338V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h2.338" />
+              <path d="M3 9h5.859" />
+              <path d="M8 2v3" />
+              <circle cx="16" cy="16" r="6" />
+            </svg>
+            <h2>Pasti ultima settimana</h2>
+          </div>
+          <div class="meal-week-scroll">
+            <table class="meal-week-table" id="meal-week-table">
+              <thead>
+                <tr>
+                  <th scope="col"><span class="visually-hidden">Pasto</span></th>
+                  <th scope="col">Lun</th>
+                  <th scope="col">Mar</th>
+                  <th scope="col">Mer</th>
+                  <th scope="col">Gio</th>
+                  <th scope="col">Ven</th>
+                  <th scope="col">Sab</th>
+                  <th scope="col">Dom</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Colazione</th>
+                  <td class="meal-cell" data-meal="colazione" data-day="lunedi"></td>
+                  <td class="meal-cell" data-meal="colazione" data-day="martedi"></td>
+                  <td class="meal-cell" data-meal="colazione" data-day="mercoledi"></td>
+                  <td class="meal-cell" data-meal="colazione" data-day="giovedi"></td>
+                  <td class="meal-cell" data-meal="colazione" data-day="venerdi"></td>
+                  <td class="meal-cell" data-meal="colazione" data-day="sabato"></td>
+                  <td class="meal-cell" data-meal="colazione" data-day="domenica"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Pranzo</th>
+                  <td class="meal-cell" data-meal="pranzo" data-day="lunedi"></td>
+                  <td class="meal-cell" data-meal="pranzo" data-day="martedi"></td>
+                  <td class="meal-cell" data-meal="pranzo" data-day="mercoledi"></td>
+                  <td class="meal-cell" data-meal="pranzo" data-day="giovedi"></td>
+                  <td class="meal-cell" data-meal="pranzo" data-day="venerdi"></td>
+                  <td class="meal-cell" data-meal="pranzo" data-day="sabato"></td>
+                  <td class="meal-cell" data-meal="pranzo" data-day="domenica"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Post All.</th>
+                  <td class="meal-cell" data-meal="postAllenamento" data-day="lunedi"></td>
+                  <td class="meal-cell" data-meal="postAllenamento" data-day="martedi"></td>
+                  <td class="meal-cell" data-meal="postAllenamento" data-day="mercoledi"></td>
+                  <td class="meal-cell" data-meal="postAllenamento" data-day="giovedi"></td>
+                  <td class="meal-cell" data-meal="postAllenamento" data-day="venerdi"></td>
+                  <td class="meal-cell" data-meal="postAllenamento" data-day="sabato"></td>
+                  <td class="meal-cell" data-meal="postAllenamento" data-day="domenica"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Cena</th>
+                  <td class="meal-cell" data-meal="cena" data-day="lunedi"></td>
+                  <td class="meal-cell" data-meal="cena" data-day="martedi"></td>
+                  <td class="meal-cell" data-meal="cena" data-day="mercoledi"></td>
+                  <td class="meal-cell" data-meal="cena" data-day="giovedi"></td>
+                  <td class="meal-cell" data-meal="cena" data-day="venerdi"></td>
+                  <td class="meal-cell" data-meal="cena" data-day="sabato"></td>
+                  <td class="meal-cell" data-meal="cena" data-day="domenica"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <section class="card week-history-card" aria-labelledby="week-history-title">
+          <div class="card-header-with-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="header-svg-icon lucide lucide-clock-7 preview-icon">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l-2 4" />
+            </svg>
+            <h2 id="week-history-title">Recap settimane precedenti</h2>
+          </div>
+          <p class="week-history-note">
+            Stima orientativa della media giornaliera, non prescrittiva. Il profilo indica 17 anni: per obiettivi
+            nutrizionali personali confrontati con un professionista. Colori: verde entro ±10%, giallo entro ±25%,
+            rosso oltre.
+          </p>
+          <div class="week-history-scroll">
+            <table class="week-history-table">
+              <thead>
+                <tr>
+                  <th scope="col">Settimana</th>
+                  <th scope="col">Calorie</th>
+                  <th scope="col">Proteine</th>
+                  <th scope="col">Carboidrati</th>
+                  <th scope="col">Grassi</th>
+                  <th scope="col">Parere</th>
+                  <th scope="col">Scostamento stimato</th>
+                </tr>
+              </thead>
+              <tbody id="week-history-body">
+                <tr>
+                  <td class="week-history-empty" colspan="7">Caricamento settimane...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="init_data.js"></script>
+</body>
+
+</html>

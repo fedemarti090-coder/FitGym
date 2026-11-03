@@ -1,0 +1,12 @@
+/Server/
+
+**/node_modules/
+
+**/.env
+**/.env.*
+
+/App/Backend/FitGym.db
+/App/Backend/FitGym.db-shm
+/App/Backend/FitGym.db-wal
+
+/App/Backend/info/user_data.json
