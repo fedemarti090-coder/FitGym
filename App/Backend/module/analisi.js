@@ -87,6 +87,7 @@ export async function calcola_E_Salva_Macro_Settimanali(Ai_requet, onAiStart) {
         Fornisci un piccolo discorso discorsivo e diretto in cui valuti la sua dieta attuale. Focalizzati unicamente su:
         - Eventuali carenze, eccessi o problemi nei macronutrienti rispetto ai suoi obiettivi di ricomposizione corporea e performance ibrida.
         - Consigli pratici e mirati su cosa migliorare concretamente nella dieta di tutti i giorni.
+        I macro dei singoli pasti non sono precisi e spesso non rappresentano l intera porzione prova a calcolarmi in base a quante quantita mangia un utente coi dati personali qui sopra
         Non inserire valutazioni sugli allenamenti o su altri aspetti non nutrizionali.
         Se ci sono meno di tre giorni di pasti di che non hai abbastanza dati per fornire una risposta
         Rispondi con una sola lunga frase
